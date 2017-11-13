@@ -8,10 +8,12 @@ const Artist = require('../models/artist');
 module.exports = () => {
     return Promise.all([
         Artist.find({})
-        .sort({ age: 1 }),
+        .sort({ age: 1 })
+        .limit(1),
         Artist.find({})
         .sort({ age: -1 })
-    ]).then((minArtists, maxArtists) => {
+        .limit(1)
+    ]).then(([minArtists, maxArtists]) => {
         return {
             min: minArtists[0].age,
             max: maxArtists[0].age
