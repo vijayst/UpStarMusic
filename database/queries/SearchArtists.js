@@ -12,9 +12,8 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
     const query = {};
 
     if (criteria.name) {
-        query.name = {
-            $regex: criteria.name,
-            $options: 'i'
+        query.$text = {
+            $search: criteria.name
         };
     }
     if (criteria.age) {
