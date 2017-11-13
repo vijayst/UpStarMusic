@@ -7,4 +7,6 @@ const Artist = require('../models/artist');
  * @return {promise} A promise that resolves when the record is edited
  */
 module.exports = (_id, artistProps) => {
+    Object.assign(artistProps, { albums: [] });
+    return Artist.findByIdAndUpdate(_id, artistProps);
 };
